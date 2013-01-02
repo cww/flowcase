@@ -240,12 +240,9 @@ Colin Wetherbee, C<< <cww at cpan.org> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-flowcase at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Flowcase>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+Please report any bugs using the GitHub issue tracker for this project.
 
-
-
+L<https://github.com/cww/flowcase/issues>
 
 =head1 SUPPORT
 
@@ -253,50 +250,13 @@ You can find documentation for this module with the perldoc command.
 
     perldoc Flowcase
 
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker (report bugs here)
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Flowcase>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Flowcase>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Flowcase>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Flowcase/>
-
-=back
-
-
-=head1 ACKNOWLEDGEMENTS
-
-
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2012 Colin Wetherbee.
+Please see the LICENSE file included in this distribution for the terms under
+which this software is licensed.
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; version 2 dated June, 1991 or at your option
-any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-A copy of the GNU General Public License is available in the source tree;
-if not, write to the Free Software Foundation, Inc.,
-59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+Additionally, each source file includes a copyright notice and brief licensing
+terms.
 
 =cut
 
