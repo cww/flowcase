@@ -1,0 +1,49 @@
+[%#
+Copyright 2012, 2013 Colin Wetherbee
+
+This file is part of Flowcase.
+
+Flowcase is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Flowcase is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Flowcase.  If not, see <http://www.gnu.org/licenses/>.
+%]
+[% PROCESS _wrapper.tmpl %]
+[% WRAPPER _wrapper %]
+<body style="width: 100%; font-size: 200%;">
+  <div id="main">
+    <h1>[% location %]</h1>
+    <div>
+      <div id="infobox_left" style="width: 48.5%; float: left; display: inline;">
+      <p>[% weather %]</p>
+      <p>Wind [% wind_dir %] at [% wind_mph %] to [% wind_gust_mph %] MPH</p>
+      </div>
+      <div id="infobox_right" style="width: 48.5%; float: left; display: inline;">
+        <p>
+          <span style="font-size: 150%;">[% temperature %]&deg;F</span>,
+          feels like [% feels_like %]&deg;F</p>
+        <p>[% humidity %] humidity</p>
+      </div>
+    </div>
+    <div style="padding-top: 20px;">
+[% FOREACH day IN days %]
+      <div class="infobox_sm" style="width: 25%; float: left;">
+        <h3>[% day.weekday %]</h3>
+        <p>
+          [% day.weather %]<br />
+          [% day.low %]&deg;F to [% day.high %]&deg;F
+        </p>
+      </div>
+[% END %]
+    </div>
+  </div>
+</body>
+[% END %]

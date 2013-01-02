@@ -1,0 +1,55 @@
+[%#
+Copyright 2012, 2013 Colin Wetherbee
+
+This file is part of Flowcase.
+
+Flowcase is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Flowcase is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Flowcase.  If not, see <http://www.gnu.org/licenses/>.
+%]
+[% PROCESS _wrapper.tmpl %]
+[% WRAPPER _wrapper %]
+<body style="width: 100%; font-size: 200%;">
+  <div id="main">
+    <div>
+      <h1>[% headline_data.symbol %]</h1>
+      <div style="width: 100%;">
+        <p>
+[% IF headline_data.p_change > 0 %]
+          <span class="ch_up">[% headline_data.p_change %]%</span>
+[% ELSIF headline_data.p_change < 0 %]
+          <span class="ch_down">[% headline_data.p_change %]%</span>
+[% END %]
+        &nbsp;[% headline_data.price %]</p>
+      </div>
+    </div>
+    <div style="padding-top: 20px;">
+[% FOREACH sym IN data.keys.sort %]
+      <div class="infobox_sm" style="width: 20%; float: left;">
+        <h3>[% data.$sym.symbol %]</h3>
+        <div>
+          <p>
+[% IF data.$sym.p_change > 0.0 %]
+            <span class="ch_up">[% data.$sym.p_change %]%</span>
+[% ELSIF data.$sym.p_change < 0.0 %]
+            <span class="ch_down">[% data.$sym.p_change %]%</span>
+[% ELSE %]
+            <span>[% data.$sym.p_change %]%</span>
+[% END %]
+            &nbsp;[% data.$sym.price %]</p>
+        </div>
+      </div>
+[% END %]
+    </div>
+  </div>
+</body>
+[% END %]

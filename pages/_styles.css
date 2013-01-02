@@ -1,0 +1,56 @@
+/*
+Copyright 2012, 2013 Colin Wetherbee
+
+This file is part of Flowcase.
+
+Flowcase is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Flowcase is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Flowcase.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+body
+{
+  background-color: black;
+  color: #e9d0d0;
+}
+
+h1, h2, h3
+{
+  font-family: Cinzel, serif;
+  text-decoration: underline;
+  padding-bottom: 4px;
+}
+
+h1 { margin: .32em 0; }
+h2 { margin: .40em 0; }
+h3 { margin: .48em 0; }
+
+p
+{
+  font-family: Strait, sans-serif;
+}
+
+.infobox_sm
+{
+  display: inline;
+}
+
+.ch_up { background-color: transparent; color: #2bde2b; }
+.ch_down { background-color: transparent; color: #de2b2b; }
+
+#main
+{
+  position: absolute;
+  left: 11%;
+  right: 11%;
+  text-align: center;
+}
