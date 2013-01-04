@@ -22,7 +22,6 @@ use common::sense;
 use File::Glob;
 use HTTP::Daemon;
 use HTTP::Status qw();
-use List::MoreUtils;
 use List::Util qw(shuffle);
 use Moose;
 use Time::HiRes;
