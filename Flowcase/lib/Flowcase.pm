@@ -41,7 +41,7 @@ use constant OPTS =>
 [qw(
     help
     address|a=s config|c=s% delay|d=i module_path|m=s
-    port|p=i tmpl_dir|t=s
+    port|p=i tmpl_dir|t=s exclude|x=s
 )];
 
 =head1 NAME
@@ -86,6 +86,8 @@ has 'module_path' =>
     ( isa => 'Str', is => 'rw', default => DEFAULT_MODULE_PATH );
 has 'tmpl_dir' =>
     ( isa => 'Str', is => 'rw' );
+has 'exclude' =>
+    ( isa => 'Str', is => 'rw' );
 has 'config' =>
     ( isa => 'HashRef', is => 'rw');
 
@@ -109,6 +111,12 @@ sub start
     say ">> Module path: $self->{module_path}";
     say ">> Page delay: $self->{page_delay}";
     say ">> Template directory: $self->{tmpl_dir}";
+    say '>> Pages to exclude:';
+    say '    (none)' if scalar(@{$self->{exclude}}) == 0;
+    foreach (sort { $a cmp $b } @{$self->{exclude}})
+    {
+        say "    $_";
+    }
     say '>> Config options:';
     say '    (none)' if scalar(keys %{$self->{config}}) == 0;
     foreach (sort { $a cmp $b } keys %{$self->{config}})
@@ -145,6 +153,8 @@ sub _usage
     say '                         [', DEFAULT_MODULE_PATH, ']';
     say '    -p port              Port on which to listen for web requests';
     say '                         [', DEFAULT_LISTEN_PORT, ']';
+    say '    -x pages             Comma-separated list of page files to ';
+    say '                         exclude';
 
     exit($errors_ref ? -1 : 0);
 }
@@ -225,6 +235,8 @@ sub parse_opts
     {
         push(@errors, 'Template directory must be provided');
     }
+
+    $self->{exclude} = $opts{exclude} ? [ split(q{,}, $opts{exclude}) ] : [];
 
     if (defined($opts{config}))
     {

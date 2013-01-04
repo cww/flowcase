@@ -22,6 +22,7 @@ use common::sense;
 use File::Glob;
 use HTTP::Daemon;
 use HTTP::Status qw();
+use List::MoreUtils;
 use List::Util qw(shuffle);
 use Moose;
 use Time::HiRes;
@@ -45,7 +46,7 @@ sub start
 
     my $flowcase = Flowcase::get_instance();
 
-    my $bad_files_ref = $self->_load_file_lists();
+    my $bad_files_ref = $self->_load_file_lists($flowcase->exclude());
     if (scalar(@$bad_files_ref) > 0)
     {
         die 'Bad files in template directory: ',
@@ -153,7 +154,7 @@ sub start
 
 sub _load_file_lists
 {
-    my ($self) = @_;
+    my ($self, $exclude_ref) = @_;
 
     my $tmpl_dir = Flowcase::get_instance()->tmpl_dir();
     my $file_spec = "$tmpl_dir/*";
@@ -167,12 +168,31 @@ sub _load_file_lists
         {
             when (m|/([^/_]*)\.tmpl|)
             {
-                my $o = Flowcase::PageFile->new
-                (
-                    filename => $file,
-                    pagename => $1,
-                );
-                push(@{$self->{page_files}}, $o);
+                my $pagename = $1;
+
+                # Work-around for Perl bug #94682, which breaks the ability to
+                # use $_ inside a given/when clause.  I decided to rewrite
+                # List::MoreUtils::any() here so that I didn't have to require
+                # users to use Perl 5.15.3, in which that bug is fixed.
+                my $excluded = 0;
+                for my $exclude_file (@$exclude_ref)
+                {
+                    if ($pagename eq $exclude_file)
+                    {
+                        $excluded = 1;
+                        last;
+                    }
+                }
+
+                if (!$excluded)
+                {
+                    my $o = Flowcase::PageFile->new
+                    (
+                        filename => $file,
+                        pagename => $pagename,
+                    );
+                    push(@{$self->{page_files}}, $o);
+                }
             }
             when (m|/(_[^/]*)$| && !m|\.tmpl$|)
             {
